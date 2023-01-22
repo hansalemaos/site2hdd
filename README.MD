@@ -127,7 +127,14 @@ download_webpage(
 
 import subprocess
 import sys
-subprocess.run([sys.executable, r"C:\Users\Gamer\anaconda3\envs\dfdir\threadingresultstest.py",r'C:\Users\Gamer\anaconda3\envs\dfdir\exampleconfigdownloader.ini'])
+
+subprocess.run(
+    [
+        sys.executable,
+        r"C:\Users\USERNAME\anaconda3\envs\ENVNAME\Lib\site-packages\site2hdd\__init__.py",
+        r"C:\Users\USERNAME\anaconda3\envs\ENVNAME\pandaspyd.ini",
+    ]
+)
 
 # This is how ini files should look like 
 
