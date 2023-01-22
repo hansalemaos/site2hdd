@@ -1,7 +1,12 @@
 a_pandas_ex_apply_ignore_exceptions
 a_pandas_ex_horizontal_explode
+beautifulsoup4
+check_if_nan
 cprinter
+flatten_any_dict_iterable_or_whatsoever
+flatten_everything
 freeproxydownloader
+keyboard
 kthread_sleep
 numba
 openpyxl
