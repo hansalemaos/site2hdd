@@ -3,6 +3,8 @@ a_pandas_ex_horizontal_explode
 cprinter
 freeproxydownloader
 kthread_sleep
+numba
+openpyxl
 pandas
 regex
 requests
@@ -10,3 +12,4 @@ threadingbatch
 tolerant_isinstance
 touchtouch
 url_analyzer
+windows_filepath
