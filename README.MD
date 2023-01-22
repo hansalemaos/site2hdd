@@ -3,6 +3,8 @@ $pip install site2hdd
 from site2hdd import download_url_list,get_proxies,download_webpage
 ```
 
+### This video in Portuguese might help you: https://www.youtube.com/watch?v=FuLikrVCVeY
+
 ```python
 xlsxfile,pklfile = get_proxies(
   save_path_proxies_all_filtered='c:\\newfilepath\\myproxiefile\\proxy', #  path doesn't have to exist, it will be created, last 
