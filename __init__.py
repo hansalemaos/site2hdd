@@ -23,6 +23,8 @@ from url_analyzer import get_all_links_from_url, get_url_df, get_all_links_from_
 
 import numba, windows_filepath, openpyxl, check_if_nan, flatten_any_dict_iterable_or_whatsoever, keyboard, flatten_everything, bs4
 
+site2hddvars = sys.modules[__name__]
+site2hddvars.all_dataframes = []
 
 @threadingbatch.thread_capture
 def get_url(
@@ -198,7 +200,8 @@ def double_download_links_from_list(
     sleepafterstart=0.02,
     ignore_exceptions=False,
     verbose=False,
-    modus=0,
+    modus=1,
+    save_as_tmp_dataframe=False
 ):
     flist = []
     urls = list(set(urls))
@@ -293,6 +296,8 @@ def double_download_links_from_list(
     df["aa_success"] = df.aa_response.ds_apply_ignore(
         False, lambda x: True if x.status_code == 200 else False
     )
+    if save_as_tmp_dataframe:
+        site2hddvars.all_dataframes.append(df.copy())
     return df
 
 
@@ -322,6 +327,7 @@ def download_all_urls(
     alreadydownloaded,
     modus,
     save_config_on_hdd=True,
+save_as_tmp_dataframe=False
 ):
     dfx = pd.read_pickle(proxypickl)
     if isinstance_tolerant(stilltodownload, str):
@@ -351,7 +357,7 @@ def download_all_urls(
         sleepafterstart=sleepafterstart,
         ignore_exceptions=ignore_exceptions,
         verbose=verbose,
-        modus=modus,
+        modus=modus, save_as_tmp_dataframe=save_as_tmp_dataframe
     )
     goodresults = []
     for name, group in df.groupby("aa_downloadlink_original"):
@@ -620,6 +626,7 @@ def download_url_list(
     SleepAfterKillThread: float = 0.1,
     SleepAfterStartThread: float = 0.1,
     IgnoreExceptions: bool = True,
+save_as_tmp_dataframe:bool=False
 ):
 
     counter_ = 0
@@ -642,7 +649,7 @@ def download_url_list(
                 savefolder=SaveFolder,
                 alreadydownloaded="",
                 modus=1,
-                save_config_on_hdd=False,
+                save_config_on_hdd=False, save_as_tmp_dataframe=save_as_tmp_dataframe
             )
             urls = [_ for _ in urls if not _ in df.aa_downloadlink_original.to_list()]
         except Exception as fe:
